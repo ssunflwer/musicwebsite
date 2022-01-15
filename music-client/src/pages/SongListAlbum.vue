@@ -5,7 +5,7 @@
         <img :src=attachImageUrl(singers.pic) alt="">
       </div>
       <div class="album-info">
-        <h2>简介：</h2>
+        <h2>Giới thiệu: </h2>
         <span>
           {{singers.introduction}}
         </span>
@@ -15,26 +15,24 @@
       <div class="album-title">
         <p>{{singers.title}}</p>
       </div>
-      <!--评分-->
       <div class="album-score">
         <div>
-          <h3>歌单评分：</h3>
+          <h3>Xếp hạng：</h3>
           <div>
             <el-rate v-model="value5" disabled></el-rate>
           </div>
         </div>
         <span>{{value5 * 2}}</span>
         <div>
-          <h3>评价：</h3>
+          <h3>Đánh giá: </h3>
           <div @click="pushValue()">
             <el-rate v-model="value3" show-text allow-half></el-rate>
           </div>
         </div>
       </div>
-      <!--歌曲-->
       <div class="songs-body">
         <album-content :songList="listOfSongs">
-          <template slot="title">歌单</template>
+          <template slot="title">Danh sách bài hát</template>
         </album-content>
         <comment :playId="songListId" :type="1"></comment>
       </div>
@@ -60,33 +58,55 @@ export default {
     return {
       songLists: [],
       singers: {},
-      count: 0, // 点赞数
-      songListId: '', // 歌单ID
+      count: 0,
+      songListId: '',
       value3: 0,
       value5: 0
     }
-  },
+
+},
+
+
+
+
+
   computed: {
     ...mapGetters([
-      'loginIn', // 登录标识
-      'tempList', // 单个歌单信息
-      'listOfSongs', // 存放的音乐
-      'userId', // 用户ID
-      'avator' // 用户头像
+      'loginIn',
+      'tempList',
+      'listOfSongs',
+      'userId',
+      'avator'
     ])
   },
+
+
+
+
+
+
   created () {
-    this.songListId = this.tempList.id // 给歌单ID赋值
+    this.songListId = this.tempList.id
     this.singers = this.tempList
-    this.getSongId() // 获取歌单里面的歌曲ID
-    this.getRank(this.songListId) // 获取评分
+    this.getSongId()
+    this.getRank(this.songListId)
+
+
+
+
+
+
+
   },
   methods: {
-    // 收集歌单里面的歌曲
+
+
+
+
+
     getSongId () {
       HttpManager.getListSongOfSongId(this.songListId)
         .then(res => {
-          // 获取歌单里的歌曲信息
           for (let item of res) {
             this.getSongList(item.songId)
           }
@@ -96,7 +116,6 @@ export default {
           console.log(err)
         })
     },
-    // 获取单里的歌曲
     getSongList (id) {
       HttpManager.getSongOfId(id)
         .then(res => {
@@ -106,7 +125,6 @@ export default {
           console.log(err)
         })
     },
-    // 获取评分
     getRank (id) {
       HttpManager.getRankOfSongListId(id)
         .then(res => {
@@ -116,7 +134,6 @@ export default {
           console.log(err)
         })
     },
-    // 提交评分
     pushValue () {
       if (this.loginIn) {
         let params = new URLSearchParams()
@@ -127,9 +144,9 @@ export default {
           .then(res => {
             if (res.code === 1) {
               this.getRank(this.songListId)
-              this.notify('评分成功', 'success')
+              this.notify('Thành cônggg', 'success')
             } else {
-              this.notify('评分失败', 'error')
+              this.notify('Thất bạiii', 'error')
             }
           })
           .catch(err => {
@@ -137,7 +154,7 @@ export default {
           })
       } else {
         this.value3 = null
-        this.notify('请先登录', 'warning')
+        this.notify('Cảnh báooo', 'warning')
       }
     }
   }

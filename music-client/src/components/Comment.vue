@@ -2,19 +2,19 @@
   <div>
     <div class="comment">
       <h2>
-        <span>评论</span>
-        <span class="part__tit_desc">共 {{commentList.length}} 条评论</span>
+        <span>Bình luận</span>
+        <span class="part__tit_desc">Tổng {{commentList.length}} bình luận</span>
       </h2>
       <div class="comment-msg">
         <el-input
           class="comment-input"
           type="textarea"
-          placeholder="期待您的精彩评论..."
+          placeholder="Mong nhận được lời bình luận từ bạn..."
           :rows="2"
           v-model="textarea">
         </el-input>
       </div>
-      <el-button type="primary" class="sub-btn" @click="postComment()">发表评论</el-button>
+      <el-button type="primary" class="sub-btn" @click="postComment()">Bình luận</el-button>
     </div>
     <ul class="popular" v-for="(item, index) in commentList" :key="index">
       <li>
@@ -49,25 +49,25 @@ export default {
   name: 'comment',
   mixins: [mixin],
   props: {
-    playId: Number, // 歌曲ID或歌单ID
-    type: Number // 歌单（1）/歌曲（0）
+    playId: Number, // ID bài hát hoặc ID danh sách phát
+    type: Number // Danh sách phát (1) / Bài hát (0)
   },
   data () {
     return {
-      commentList: [], // 存放评论内容
-      userPic: [], // 保存评论用户头像
-      userName: [], // 保存评论用户名字
-      textarea: '', // 存放输入内容
+      commentList: [], // Lưu trữ nội dung bình luận
+      userPic: [], // Lưu hình đại diện người dùng nhận xét
+      userName: [], // Lưu tên người dùng nhận xét
+      textarea: '', // Lưu trữ đầu vào
       ZAN: ICON.ZAN
     }
   },
   computed: {
     ...mapGetters([
       'id',
-      'userId', // 用户ID
-      'index', // 列表中的序号
-      'loginIn', // 用户是否登录
-      'avator' // 用户头像
+      'userId', // Tên người dùng
+      'index', // Số seri trong danh sách
+      'loginIn', // Cho dù người dùng đã đăng nhập
+      'avator' // Ảnh đại diện
     ])
   },
   watch: {
@@ -79,7 +79,7 @@ export default {
     this.getComment()
   },
   methods: {
-    // 获取所有评论
+    // Nhận tất cả các bình luận
     getComment () {
       HttpManager.getAllComment(this.type, this.playId)
         .then(res => {
@@ -92,7 +92,7 @@ export default {
           console.log(err)
         })
     },
-    // 获取评论用户的昵称和头像
+    // Lấy biệt hiệu và hình đại diện của người dùng bình luận
     getUsers (id) {
       HttpManager.getUserOfId(id)
         .then(res => {
@@ -103,10 +103,10 @@ export default {
           console.log(err)
         })
     },
-    // 提交评论
+    // Gửi bình luận
     postComment () {
       if (this.loginIn) {
-        // 0 代表歌曲， 1 代表歌单
+        // 0 có nghĩa là bài hát, 1 có nghĩa là danh sách phát
         let params = new URLSearchParams()
         if (this.type === 1) {
           params.append('songListId', this.playId)
@@ -121,19 +121,19 @@ export default {
             if (res.code === 1) {
               this.textarea = ''
               this.getComment()
-              this.notify('评论成功', 'success')
+              this.notify('Bình luận thành công âu kây', 'success')
             } else {
-              this.notify('评论失败', 'error')
+              this.notify('Nói gì zạy trời, khum bình luận được nha', 'error')
             }
           })
           .catch(err => {
             console.log(err)
           })
       } else {
-        this.notify('请先登录', 'warning')
+        this.notify('Vui lòng đăng nhập trước', 'warning')
       }
     },
-    // 点赞
+    // Thích
     postUp (id, up, index) {
       if (this.loginIn) {
         let params = new URLSearchParams()
@@ -150,7 +150,7 @@ export default {
             console.log(err)
           })
       } else {
-        this.notify('请先登录', 'warning')
+        this.notify('Vui lòng đăng nhập trước', 'warning')
       }
     }
   }

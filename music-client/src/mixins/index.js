@@ -9,14 +9,14 @@ const mixin = {
     ])
   },
   methods: {
-    // 提示信息
+    // Thông tin nhanh chóng
     notify (title, type) {
       this.$notify({
         title: title,
         type: type
       })
     },
-    // 获取图片信息
+    // Lấy thông tin hình ảnh
     attachImageUrl (srcUrl) {
       return srcUrl ? this.$store.state.configure.HOST + srcUrl || '../assets/img/user.jpg' : ''
     },
@@ -24,17 +24,17 @@ const mixin = {
       let birth = String(val).match(/[0-9-]+(?=\s)/)
       return Array.isArray(birth) ? birth[0] : birth
     },
-    // 得到名字后部分
+    // Lấy phần cuối của tên
     replaceFName (str) {
       let arr = str.split('-')
       return arr[1]
     },
-    // 得到名字前部分
+    // Lấy phần đầu của tên
     replaceLName (str) {
       let arr = str.split('-')
       return arr[0]
     },
-    // 播放
+    // PLAY
     toplay: function (id, url, pic, index, name, lyric) {
       this.$store.commit('setId', id)
       this.$store.commit('setListIndex', index)
@@ -59,13 +59,13 @@ const mixin = {
           })
       }
     },
-    // 解析歌词
+    // Phân tích cú pháp lời bài hát
     parseLyric (text) {
       let lines = text.split('\n')
       let pattern = /\[\d{2}:\d{2}.(\d{3}|\d{2})\]/g
       let result = []
 
-      // 对于歌词格式不对的特殊处理
+      // Xử lý đặc biệt cho định dạng lời bài hát sai
       if (!(/\[.+\]/.test(text))) {
         return [[0, text]]
       }
@@ -76,8 +76,8 @@ const mixin = {
 
       lines[lines.length - 1].length === 0 && lines.pop()
       for (let item of lines) {
-        let time = item.match(pattern) // 存前面的时间段
-        let value = item.replace(pattern, '') // 存歌词
+        let time = item.match(pattern) // Lưu khoảng thời gian trước đó
+        let value = item.replace(pattern, '') // Lưu lời bài hát
         for (let item1 of time) {
           let t = item1.slice(1, -1).split(':')
           if (value !== '') {
@@ -90,7 +90,7 @@ const mixin = {
       })
       return result
     },
-    // 搜索音乐
+    // Tìm kiếm nhạc
     getSong () {
       if (!this.$route.query.keywords) {
         this.$store.commit('setListOfSongs', [])
@@ -100,7 +100,7 @@ const mixin = {
         .then(res => {
           if (!res.length) {
             this.$store.commit('setListOfSongs', [])
-            this.notify('系统暂无该歌曲', 'warning')
+            this.notify('Linh tinh quá, không có bài nào như zạy', 'warning')
           } else {
             this.$store.commit('setListOfSongs', res)
           }

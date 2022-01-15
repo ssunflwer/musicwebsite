@@ -1,16 +1,16 @@
 <template>
   <div class="song-lyric">
-    <h1 class="lyric-title">歌词</h1>
+    <h1 class="lyric-title">Lời bài hát</h1>
     <transition-group name="lyric-fade">
-      <!--有歌词-->
+      <!--Có lời bài hát-->
       <ul :style="{top:lrcTop}" class="has-lyric" v-if="lyr.length" key="has-lyric">
         <li v-for="(item, index) in lyr" v-bind:key="index">
           {{ item[1] }}
         </li>
       </ul>
-      <!--没歌词-->
+      <!--Không có lời bài hát-->
       <div v-else class="no-lyric" key="no-lyric">
-        <span>暂无歌词</span>
+        <span>Chưa có lời bài hát</span>
       </div>
     </transition-group>
     <comment :playId="id" :type="0"></comment>
@@ -30,27 +30,25 @@ export default {
   },
   data () {
     return {
-      lrcTop: '200px', // 歌词滑动
-      showLrc: false, // 切换唱片和歌词
-      lyr: [] // 当前歌曲的歌词
+      lrcTop: '200px',
+      showLrc: false,
+      lyr: []
     }
   },
   computed: {
     ...mapGetters([
       'curTime',
-      'id', // 歌曲ID
-      'lyric', // 歌词
-      'listOfSongs', // 存放的音乐
-      'listIndex' // 当前歌曲在歌曲列表的位置
+      'id',
+      'lyric',
+      'listOfSongs',
+      'listIndex'
     ])
   },
   watch: {
     id: function () {
       this.lyr = this.parseLyric(this.listOfSongs[this.listIndex].lyric)
     },
-    // 播放时间的开始和结束
     curTime: function () {
-      // 处理歌词位置及颜色
       if (this.lyr.length !== 0) {
         for (let i = 0; i < this.lyr.length; i++) {
           if (this.curTime >= this.lyr[i][0]) {

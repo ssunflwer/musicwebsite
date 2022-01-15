@@ -1,18 +1,18 @@
 const singerStyle = [
   {
-    name: '全部歌手',
+    name: 'Tất cả',
     type: '-1'
   },
   {
-    name: '男歌手',
+    name: 'Nghệ sĩ Nam',
     type: '1'
   },
   {
-    name: '女歌手',
+    name: 'Nghệ sĩ Nữ',
     type: '0'
   },
   {
-    name: '组合歌手',
+    name: 'Nhóm nhạc',
     type: '2'
   }
 ]

@@ -1,33 +1,33 @@
-// 左侧导航栏
+// Thanh điều hướng bên trái
 const navMsg = [{
-  name: '首页',
+  name: 'Trang Chủ',
   path: '/'
 }, {
-  name: '歌单',
+  name: 'Thể loại',
   path: '/song-list'
 }, {
-  name: '歌手',
+  name: 'Ca Sĩ',
   path: '/singer'
 }, {
-  name: '我的音乐',
+  name: 'Yêu thích',
   path: '/my-music'
 }]
 
-// 右侧导航栏
+// Thanh điều hướng bên phải
 const loginMsg = [{
-  name: '登录',
+  name: 'Đăng Nhập',
   path: '/login-in'
 }, {
-  name: '注册',
+  name: 'Đăng Ký',
   path: '/sign-up'
 }]
 
-// 用户下拉菜单项
+// Mục menu thả xuống của người dùng
 const menuList = [{
-  name: '设置',
+  name: 'Cài đặt',
   path: '/setting'
 }, {
-  name: '退出',
+  name: 'Đăng Xuất',
   path: 0
 }]
 

@@ -12,8 +12,8 @@ export default {
   data () {
     return {
       footerList: [
-        `关于 | 帮助 | 条款 | 反馈`,
-        `Copyright © 2019 Yin-Hongwei`
+        `Giới thiệu | Trợ giúp | Điều khoản | Phản hồi`,
+        `Copyright © 1781310112 Vu Thi Thanh Binh`
       ]
     }
   }

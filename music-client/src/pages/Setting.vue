@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <div class="leftCol">
-      <div class="settingsMainHeader">设置</div>
+      <div class="settingsMainHeader">Cài đặt</div>
       <ul class="setting-aside">
         <li v-for="(item, index) in settingList" :key="index" :class="{activeColor: activeName === item.name}" @click="handleClick(item)">
           {{item.name}}
@@ -26,15 +26,15 @@ export default {
   },
   data () {
     return {
-      activeName: '个人信息',
+      activeName: 'Thông tin',
       componentSrc: 'Info',
       settingList: [{
         icon: '',
-        name: '个人信息',
+        name: 'Thông tin',
         path: 'Info'
       }, {
         icon: '',
-        name: '修改头像',
+        name: 'Avatar',
         path: 'Upload'
       }]
     }

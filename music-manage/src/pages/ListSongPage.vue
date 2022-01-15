@@ -3,15 +3,15 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-tickets"></i> 歌单歌曲信息
+          <i class="el-icon-tickets"></i> Thông tin bài hát danh sách phát
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10"></el-input>
-        <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加歌曲</el-button>
+        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">Xóa hàng loạt</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="Lọc từ khóa" class="handle-input mr10"></el-input>
+        <el-button type="primary" size="mini" @click="centerDialogVisible = true">Thêm bài hát</el-button>
       </div>
       <el-table
         :data="tableData"
@@ -22,17 +22,17 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column prop="name" label="歌手-歌曲"></el-table-column>
-        <el-table-column label="操作" width="80">
+        <el-table-column prop="name" label="ca sĩ-bài hát"></el-table-column>
+        <el-table-column label="Play" width="80">
           <template slot-scope="scope">
-            <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">Xóa bỏ</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
 
-    <!--添加歌曲-->
-    <el-dialog title="添加歌曲" :visible.sync="centerDialogVisible" width="400px" center>
+    <!--Thêm bài hát-->
+    <el-dialog title="Thêm bài hát" :visible.sync="centerDialogVisible" width="400px" center>
       <el-form
         :model="registerForm"
         status-icon
@@ -40,25 +40,25 @@
         label-width="80px"
         class="demo-ruleForm"
       >
-        <el-form-item prop="singerName" label="歌手名字" size="mini">
-          <el-input v-model="registerForm.singerName" placeholder="歌手名字"></el-input>
+        <el-form-item prop="singerName" label="Tên ca sĩ" size="mini">
+          <el-input v-model="registerForm.singerName" placeholder="Tên ca sĩ"></el-input>
         </el-form-item>
-        <el-form-item prop="songName" label="歌曲名字" size="mini">
-          <el-input v-model="registerForm.songName" placeholder="歌曲名字"></el-input>
+        <el-form-item prop="songName" label="Tên bài hát" size="mini">
+          <el-input v-model="registerForm.songName" placeholder="Tên bài hát"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="getSongId">确 定</el-button>
+        <el-button size="mini" @click="centerDialogVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="getSongId">Xác nhận</el-button>
       </span>
     </el-dialog>
 
-    <!-- 删除提示框 -->
-    <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-      <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
+    <!-- Xóa chú thích công cụ -->
+    <el-dialog title="Gợi ý" :visible.sync="delVisible" width="300px" center>
+      <div class="del-dialog-cnt" align="center">Không thể khôi phục thao tác xóa. Bạn có chắc chắn muốn xóa không?</div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="delVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="deleteRow">确 定</el-button>
+        <el-button size="mini" @click="delVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="deleteRow">Xác nhận</el-button>
       </span>
     </el-dialog>
   </div>
@@ -105,7 +105,7 @@ export default {
     this.getData()
   },
   methods: {
-    // 获取歌单
+    // Nhận danh sách phát
     getData () {
       this.tableData = []
       this.tempDate = []
@@ -120,7 +120,7 @@ export default {
           console.log(err)
         })
     },
-    // 获取歌单里对应的音乐
+    // Nhận nhạc tương ứng trong danh sách phát
     getSong (id) {
       HttpManager.getSongOfId(id)
         .then(res => {
@@ -131,7 +131,7 @@ export default {
           console.log(err)
         })
     },
-    // 获取要添加歌曲的ID
+    // Lấy ID của bài hát bạn muốn thêm
     getSongId () {
       let _this = this
       var id = _this.registerForm.singerName + '-' + _this.registerForm.songName
@@ -140,7 +140,7 @@ export default {
           this.addSong(res[0].id)
         })
     },
-    // 添加歌曲
+    // Thêm bài hát
     addSong (id) {
       let params = new URLSearchParams()
       params.append('songId', id)
@@ -149,9 +149,9 @@ export default {
         .then(res => {
           if (res.code === 1) {
             this.getData()
-            this.notify('添加成功', 'success')
+            this.notify('Thêm thành công', 'success')
           } else {
-            this.notify('添加失败', 'error')
+            this.notify('Thêm thất bại', 'error')
           }
         })
         .catch(err => {
@@ -159,15 +159,15 @@ export default {
         })
       this.centerDialogVisible = false
     },
-    // 确定删除
+    // Xác nhận xóa
     deleteRow () {
       HttpManager.deleteListSong(this.idx)
         .then(res => {
           if (res) {
             this.getData()
-            this.notify('删除成功', 'success')
+            this.notify('Xóa thành công', 'success')
           } else {
-            this.notify('删除失败', 'error')
+            this.notify('Xóa thất bại', 'error')
           }
         })
         .catch(err => {

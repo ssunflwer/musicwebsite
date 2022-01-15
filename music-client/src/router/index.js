@@ -77,7 +77,7 @@ const constantRoutes = [
 ]
 
 export default new Router({
-  mode: 'history', // 去掉url中的#
+  mode: 'history', // Xóa # trong URL
   scrollBehavior: (o, from, savedPosition) => ({ x: 0, y: 0 }),
   routes: constantRoutes
 })

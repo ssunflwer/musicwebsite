@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'listOfSongs' // 存放的音乐
+      'listOfSongs' // Nhạc được lưu trữ
     ])
   },
   mounted () {

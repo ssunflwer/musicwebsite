@@ -1,26 +1,26 @@
 const songStyle = [
   {
-    name: '全部歌单',
+    name: 'Tất cả',
     type: 'One'
   },
   {
-    name: '华语',
+    name: 'Radio',
     type: 'Two'
   },
   {
-    name: '粤语',
+    name: 'Nhạc nhẹ',
     type: 'Three'
   },
   {
-    name: '欧美',
+    name: 'Lofi',
     type: 'Four'
   },
   {
-    name: '日韩',
+    name: 'Remix',
     type: 'Five'
   },
   {
-    name: '轻音乐',
+    name: 'OST',
     type: 'Six'
   },
   {
@@ -28,7 +28,7 @@ const songStyle = [
     type: 'Seven'
   },
   {
-    name: '乐器',
+    name: 'Ballad',
     type: 'Eight'
   }
 ]

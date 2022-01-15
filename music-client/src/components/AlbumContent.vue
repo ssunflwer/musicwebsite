@@ -8,9 +8,9 @@
       <li class="list-title">
         <div class="song-item">
           <span class="item-index"></span>
-          <span class="item-title">歌曲名</span>
-          <span class="item-name">艺人</span>
-          <span class="item-intro">专辑</span>
+          <span class="item-title">Tên bài hát</span>
+          <span class="item-name">Nghệ sĩ</span>
+          <span class="item-intro">Album</span>
         </div>
       </li>
       <li class="list-content" v-for="(item, index) in songList" :key="index">
@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'id' // 音乐ID
+      'id' // IDAmNhac
     ])
   }
 }

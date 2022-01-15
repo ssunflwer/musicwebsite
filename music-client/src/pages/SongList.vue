@@ -38,41 +38,42 @@ export default {
   },
   data () {
     return {
-      songStyle: songStyle, // 歌单导航栏类别
-      activeName: '全部歌单',
-      pageSize: 15, // 页数
-      currentPage: 1, // 当前页
-      albumDatas: [] // 歌单
+      songStyle: songStyle,
+      activeName: 'Tất cả',
+      pageSize: 15,
+      currentPage: 1,
+      albumDatas: []
     }
   },
   computed: {
     ...mapGetters([
       'songsList'
     ]),
-    // 计算当前表格中的数据
+
     data () {
       return this.albumDatas.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
     }
   },
   mounted () {
-    this.handleChangeView('全部歌单')
+    this.handleChangeView('Tất cả')
   },
   methods: {
-    // 获取当前页
     handleCurrentChange (val) {
       this.currentPage = val
     },
-    // 获取歌单
     handleChangeView: function (name) {
+      if(this.$route.query.keywords){
+        name = this.$route.query.keywords
+      }
+
       this.activeName = name
       this.albumDatas = []
-      if (name === '全部歌单') {
+      if (name === 'Tất cả') {
         this.getSongList(this.cur_page)
       } else {
         this.getSongListOfStyle(name)
       }
     },
-    // 获取全部歌单
     getSongList (page) {
       HttpManager.getSongList()
         .then(res => {
@@ -82,8 +83,9 @@ export default {
         .catch(err => {
           console.log(err)
         })
+
+
     },
-    // 通过类别获取歌单
     getSongListOfStyle (style) {
       HttpManager.getSongListOfStyle(style)
         .then(res => {
@@ -93,6 +95,8 @@ export default {
         .catch(err => {
           console.log(err)
         })
+
+
     }
   }
 }

@@ -4,14 +4,14 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-tickets"></i> 收藏信息
+          <i class="el-icon-tickets"></i> Thông tin bộ sưu tập
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10"></el-input>
+        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">Xóa hàng loạt</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="Lọc từ khóa" class="handle-input mr10"></el-input>
       </div>
       <el-table
         :data="tableData"
@@ -22,21 +22,21 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="50"></el-table-column>
-        <el-table-column prop="name" label="歌手-歌曲"></el-table-column>
-        <el-table-column label="操作" width="85">
+        <el-table-column prop="name" label="ca sĩ-bài hát"></el-table-column>
+        <el-table-column label="Play" width="85">
           <template slot-scope="scope">
-            <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.row)">Xóa bỏ</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
 
-    <!-- 删除提示框 -->
-    <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-      <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
+    <!-- Xóa chú thích công cụ -->
+    <el-dialog title="Gợi ý" :visible.sync="delVisible" width="300px" center>
+      <div class="del-dialog-cnt" align="center">Không thể khôi phục thao tác xóa. Bạn có chắc chắn muốn xóa không?</div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="delVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="deleteRow">确 定</el-button>
+        <el-button size="mini" @click="delVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="deleteRow">Chắc chắn</el-button>
       </span>
     </el-dialog>
   </div>
@@ -52,13 +52,13 @@ export default {
   props: ['id'],
   data () {
     return {
-      tableData: [], // 记录歌曲，用于显示
-      tempDate: [], // 记录歌曲，用于搜索时能临时记录一份歌曲列表
-      tempId: [], // 记录列表中歌曲的id
-      multipleSelection: [], // 记录要删除的歌曲
-      delVisible: false, // 显示删除框
-      select_word: '', // 记录输入框输入的内容
-      idx: -1 // 记录当前要删除的歌曲
+      tableData: [], // Ghi lại các bài hát để hiển thị
+      tempDate: [], // Ghi âm bài hát, có thể ghi tạm thời danh sách các bài hát khi được sử dụng để tìm kiếm
+      tempId: [], // Id của bài hát trong danh sách đĩa hát
+      multipleSelection: [], // Ghi lại bài hát sẽ bị xóa
+      delVisible: false, // Hiển thị hộp xóa
+      select_word: '', // Ghi lại nội dung đã nhập vào ô nhập liệu
+      idx: -1 // Ghi lại bài hát hiện đang bị xóa
     }
   },
   watch: {
@@ -79,7 +79,7 @@ export default {
     this.getData()
   },
   methods: {
-    // 通过用户id获取用户收藏的歌曲id
+    // Nhận id bài hát yêu thích của người dùng thông qua id người dùng
     getData () {
       HttpManager.getCollectionOfUser(this.$route.query.id)
         .then(res => {
@@ -92,7 +92,7 @@ export default {
           console.log(err)
         })
     },
-    // 通过歌曲ID获取歌曲
+    // Nhận bài hát theo ID bài hát
     getSongList (id) {
       HttpManager.getSongOfId(id)
         .then(res => {
@@ -103,15 +103,15 @@ export default {
           console.log(err)
         })
     },
-    // 删除一首歌曲
+    // Xóa một bài hát
     deleteRow () {
       HttpManager.deleteCollection(this.$route.query.id, this.idx.id)
         .then(res => {
           if (res) {
             this.getData()
-            this.notify('删除成功', 'success')
+            this.notify('Xóa thành công, giỏi lắm', 'success')
           } else {
-            this.notify('删除失败', 'error')
+            this.notify('Thất bại là mẹ thành công', 'error')
           }
         })
         .catch(err => {

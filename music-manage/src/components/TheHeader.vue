@@ -1,24 +1,24 @@
 <template>
   <div class="header">
-    <!-- 折叠按钮 -->
+    <!-- Nút thu gọn -->
     <div class="collapse-btn" @click="collapseChage">
       <i class="el-icon-s-unfold"></i>
     </div>
-    <div class="logo">Yin-music 后台管理</div>
+    <div class="logo">Trang Quản Lý</div>
     <div class="header-right">
       <div class="header-user-con">
-        <!-- 用户头像 -->
+        <!-- Ảnh đại diện -->
         <div class="user-avator">
           <img src="../assets/img/user.jpg" />
         </div>
-        <!-- 用户名下拉菜单 -->
+        <!-- Trình đơn thả xuống tên người dùng -->
         <el-dropdown class="user-name" trigger="click" @command="handleCommand">
           <span class="el-dropdown-link">
             {{username}}
             <i class="el-icon-caret-bottom"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
+            <el-dropdown-item command="loginout">Đăng xuất</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -42,13 +42,13 @@ export default {
     }
   },
   methods: {
-    // 用户名下拉菜单选择事件
+    // Trình đơn thả xuống tên người dùng để chọn sự kiện
     handleCommand (command) {
       if (command === 'loginout') {
         this.$router.push('/')
       }
     },
-    // 侧边栏折叠
+    // Đã thu gọn thanh bên
     collapseChage () {
       this.collapse = !this.collapse
       _ctrEvent.$emit('collapse', this.collapse)

@@ -6,31 +6,31 @@
       </svg>
     </div>
     <div class="kongjian" >
-      <!--上一首-->
+      <!--Bài hát trước-->
       <div class="item" @click="prev">
         <svg class="icon" aria-hidden="true">
           <use :xlink:href="SHANGYISHOU"></use>
         </svg>
       </div>
-      <!--播放-->
+      <!--Play-->
       <div class="item" @click="togglePlay">
         <svg class="icon" aria-hidden="true">
           <use :xlink:href="playButtonUrl"></use>
         </svg>
       </div>
-      <!--下一首-->
+      <!--Bài hát tiếp theo-->
       <div class="item" @click="next">
         <svg class="icon" aria-hidden="true">
           <use :xlink:href="XIAYISHOU"></use>
         </svg>
       </div>
-      <!--歌曲图片-->
+      <!--Hình ảnh bài hát-->
       <div class="item-img" @click="goPlayerPage">
          <img :src=picUrl alt="">
       </div>
-      <!--播放进度-->
+      <!--Tiến trình phát lại-->
       <div class="playing-speed">
-        <!--播放开始时间-->
+        <!--Thời gian bắt đầu play-->
         <div class="current-time">{{ nowTime }}</div>
         <div class="progress-box">
           <div class="item-song-title">
@@ -38,20 +38,20 @@
             <div>{{this.artist}}</div>
           </div>
           <div ref="progress" class="progress" @mousemove="mousemove">
-            <!--进度条-->
+            <!--Thanh tiến trình-->
             <div ref="bg" class="bg" @click="updatemove">
               <div ref="curProgress" class="cur-progress" :style="{width: curLength+'%'}"></div>
             </div>
-            <!--进度条 end -->
-            <!--拖动的点点-->
+            <!--Thanh tiến trình end -->
+            <!--Kéo điểm-->
             <div ref="idot" class="idot" :style="{left: curLength+'%'}" @mousedown="mousedown" @mouseup="mouseup"></div>
-            <!--拖动的点点 end -->
+            <!--Kéo điểm kết thúc -->
           </div>
         </div>
-        <!--播放结束时间-->
+        <!--Thời gian kết thúc chơi-->
         <div class="left-time">{{ songTime }}</div>
       </div>
-      <!--音量-->
+      <!--Âm lượng-->
       <div class="item icon-volume" >
         <svg v-if="volume !== 0" class="icon" aria-hidden="true">
           <use :xlink:href="YINLIANG"></use>
@@ -61,19 +61,19 @@
         </svg>
         <el-slider class="volume" v-model="volume" :vertical="true"></el-slider>
       </div>
-      <!--添加-->
+      <!--Thêm vào-->
       <div class="item" @click="collection">
         <svg :class="{ active: isActive }" class="icon" aria-hidden="true">
           <use :xlink:href="XIHUAN"></use>
         </svg>
       </div>
-      <!--下载-->
+      <!--Tải xuống-->
       <div class="item" @click="downloadMusic">
         <svg class="icon" aria-hidden="true">
           <use :xlink:href="XIAZAI"></use>
         </svg>
       </div>
-      <!--歌曲列表-->
+      <!--Danh sách bài hát-->
       <div class="item" @click="changeAside">
         <svg class="icon" aria-hidden="true">
           <use :xlink:href="LIEBIAO"></use>
@@ -97,9 +97,9 @@ export default {
       tag: false,
       nowTime: '00:00',
       songTime: '00:00',
-      curLength: 0, // 进度条的位置
-      progressLength: 0, // 进度条长度
-      mouseStartX: 0, // 拖拽开始位置
+      curLength: 0, // Vị trí của thanh tiến trình
+      progressLength: 0, // Chiều dài của thanh tiến trình
+      mouseStartX: 0, // Kéo vị trí bắt đầu
       toggle: true,
       volume: 50,
       XIAZAI: ICON.XIAZAI,
@@ -114,26 +114,26 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'loginIn', // 用户登录状态
-      'userId', // 用户 id
-      'isPlay', // 播放状态
-      'playButtonUrl', // 播放状态的图标
-      'id', // 音乐id
-      'url', // 音乐地址
-      'title', // 歌名
-      'artist', // 歌手名
-      'picUrl', // 歌曲图片
-      'curTime', // 当前音乐的播放位置
-      'duration', // 音乐时长
-      'listOfSongs', // 当前歌单列表
-      'listIndex', // 当前歌曲在歌曲列表的位置
-      'showAside', // 是否显示侧边栏
-      'autoNext', // 用于触发自动播放下一首
+      'loginIn', // Trạng thái đăng nhập của người dùng
+      'userId', // Tên người dùng
+      'isPlay', // Trạng thái play
+      'playButtonUrl', // Biểu tượng trạng thái play
+      'id', // Id nhạc
+      'url', // Url nhạc
+      'title', // Tên bài hát
+      'artist', // Tên ca sĩ
+      'picUrl', // Hình ảnh bài hát
+      'curTime', // Vị trí phát lại nhạc hiện tại
+      'duration', // Thời lượng âm nhạc
+      'listOfSongs', // Danh sách danh sách phát hiện tại
+      'listIndex', // Vị trí của bài hát hiện tại trong danh sách bài hát
+      'showAside', // Có hiển thị thanh bên hay không
+      'autoNext', // Được sử dụng để kích hoạt phát lại tự động bài hát tiếp theo
       'isActive'
     ])
   },
   watch: {
-    // 切换播放状态的图标
+    // Biểu tượng để chuyển trạng thái phát lại
     isPlay (val) {
       if (val) {
         this.$store.commit('setPlayButtonUrl', ICON.ZANTING)
@@ -144,15 +144,15 @@ export default {
     volume () {
       this.$store.commit('setVolume', this.volume / 100)
     },
-    // 播放时间的开始和结束
+    // Bắt đầu và kết thúc thời gian chơi
     curTime () {
       this.nowTime = this.formatSeconds(this.curTime)
       this.songTime = this.formatSeconds(this.duration)
-      // 移动进度条
+      // Thanh tiến trình di động
       this.curLength = (this.curTime / this.duration) * 100
-      // 处理歌词位置及颜色
+      // Xử lý vị trí và màu sắc của lời bài hát
     },
-    // 自动播放下一首
+    // Tự động phát bài hát tiếp theo
     autoNext () {
       this.next()
     }
@@ -171,7 +171,7 @@ export default {
     }, false)
   },
   methods: {
-    // 下载
+    // Tải xuống
     downloadMusic () {
       HttpManager.downloadMusic(this.url)
         .then(res => {
@@ -179,13 +179,13 @@ export default {
           let eleLink = document.createElement('a')
           eleLink.download = `${this.artist}-${this.title}.mp3`
           eleLink.style.display = 'none'
-          // 字符内容转变成blob地址
+          // Nội dung nhân vật được chuyển đổi thành địa chỉ blob
           let blob = new Blob([content])
           eleLink.href = URL.createObjectURL(blob)
-          // 触发点击
+          // Kích hoạt nhấp chuột
           document.body.appendChild(eleLink)
           eleLink.click()
-          // 然后移除
+          // Sau đó loại bỏ
           document.body.removeChild(eleLink)
         })
         .catch(err => {
@@ -196,7 +196,7 @@ export default {
       let temp = !this.showAside
       this.$store.commit('setShowAside', temp)
     },
-    // 控制音乐播放 / 暂停
+    // Kiểm soát phát / tạm dừng nhạc
     togglePlay () {
       if (this.isPlay) {
         this.$store.commit('setIsPlay', false)
@@ -204,27 +204,27 @@ export default {
         this.$store.commit('setIsPlay', true)
       }
     },
-    // 解析播放时间
+    // Phân tích thời gian phát lại
     formatSeconds (value) {
       let theTime = parseInt(value)
       let theTime1 = 0
       let theTime2 = 0
       if (theTime > 60) {
-        theTime1 = parseInt(theTime / 60) // 分
-        theTime = parseInt(theTime % 60) // 秒
-        // 是否超过一个小时
+        theTime1 = parseInt(theTime / 60) // Phút
+        theTime = parseInt(theTime % 60) // Giây
+        // Có phải hơn một giờ không
         if (theTime1 > 60) {
-          theTime2 = parseInt(theTime1 / 60) // 小时
-          theTime1 = 60 // 分
+          theTime2 = parseInt(theTime1 / 60) // Giờ
+          theTime1 = 60 // Phút
         }
       }
-      // 多少秒
+      // Bao nhiêu giây
       if (parseInt(theTime) < 10) {
         var result = '0:0' + parseInt(theTime)
       } else {
         result = '0:' + parseInt(theTime)
       }
-      // 多少分钟时
+      // Bao nhiêu phút
       if (theTime1 > 0) {
         if (parseInt(theTime) < 10) {
           result = '0' + parseInt(theTime)
@@ -233,7 +233,7 @@ export default {
         }
         result = parseInt(theTime1) + ':' + result
       }
-      // 多少小时时
+      // Có bao nhiêu giờ
       if (theTime2 > 0) {
         if (parseInt(theTime) < 10) {
           result = '0' + parseInt(theTime)
@@ -244,16 +244,16 @@ export default {
       }
       return result
     },
-    // 拖拽开始
+    // Kéo bắt đầu
     mousedown (e) {
       this.mouseStartX = e.clientX
       this.tag = true
     },
-    // 拖拽结束
+    // Kéo để kết thúc
     mouseup () {
       this.tag = false
     },
-    // 拖拽中
+    // Kéo
     mousemove (e) {
       if (!this.duration) {
         return false
@@ -261,7 +261,7 @@ export default {
       if (this.tag) {
         let movementX = e.clientX - this.mouseStartX
         let curLength = this.$refs.curProgress.getBoundingClientRect().width
-        //  计算出百分比
+        //  Tính phần trăm
         this.progressLength = this.$refs.progress.getBoundingClientRect().width
         let newPercent = ((curLength + movementX) / this.progressLength) * 100
         if (newPercent > 100) {
@@ -269,11 +269,11 @@ export default {
         }
         this.curLength = newPercent
         this.mouseStartX = e.clientX
-        //  根据百分比推出对应的播放时间
+        // Giới thiệu thời gian phát lại tương ứng theo tỷ lệ phần trăm
         this.changeTime(newPercent)
       }
     },
-    // 更改歌曲进度
+    // Thay đổi tiến trình bài hát
     changeTime (percent) {
       let newCurTime = this.duration * (percent * 0.01)
       this.$store.commit('setChangeTime', newCurTime)
@@ -292,7 +292,7 @@ export default {
         this.changeTime(newPercent)
       }
     },
-    // 上一首
+    // Bài hát trước
     prev () {
       if (this.listIndex !== -1 && this.listOfSongs.length > 1) {
         if (this.listIndex > 0) {
@@ -304,9 +304,10 @@ export default {
         }
       }
     },
-    // 下一首
+    // Bài hát tiếp theo
     next () {
       if (this.listIndex !== -1 && this.listOfSongs.length > 1) {
+        console.log('this.listIndex')
         if (this.listIndex < this.listOfSongs.length - 1) {
           this.$store.commit('setListIndex', this.listIndex + 1)
           this.toPlay(this.listOfSongs[this.listIndex].url)
@@ -316,7 +317,7 @@ export default {
         }
       }
     },
-    // 选中播放
+    // Chọn để play
     toPlay (url) {
       if (url && url !== this.url) {
         this.$store.commit('setId', this.listOfSongs[this.listIndex].id)
@@ -334,27 +335,31 @@ export default {
       if (this.loginIn) {
         var params = new URLSearchParams()
         params.append('userId', this.userId)
-        params.append('type', 0) // 0 代表歌曲， 1 代表歌单
+        params.append('type', 0) // 0 có nghĩa là bài hát, 1 có nghĩa là danh sách phát
         params.append('songId', this.id)
         HttpManager.setCollection(params)
           .then(res => {
-            if (res.code === 1) {
+
+            // if (res.code === 1) {
               this.$store.commit('setIsActive', true)
-              this.notify('收藏成功', 'success')
-            } else if (res.code === 2) {
-              this.notify('已收藏', 'warning')
-            } else {
-              this.$notify.error({
-                title: '收藏失败',
-                showClose: false
-              })
-            }
+              if(res.code === 2)
+                this.$store.commit('setIsActive', false)
+              this.notify('Thành công haa', 'success')
+            // } else if (res.code === 2) {
+              // this.$store.commit('setIsActive', false)
+              // this.notify('Đã có rồi mà', 'warning')
+            // } else {
+              // this.$notify.error({
+              //   title: 'Khum thành công',
+              //   showClose: false
+              // })
+            // }
           })
           .catch(err => {
             console.log(err)
           })
       } else {
-        this.notify('请先登录', 'warning')
+        this.notify('Đã đăng nhập đâu má', 'warning')
       }
     }
   }

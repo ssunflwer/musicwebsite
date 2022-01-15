@@ -5,17 +5,17 @@
         <img :src=attachImageUrl(avator) alt="">
       </div>
       <ul class="album-info">
-        <li>昵称： {{username}}</li>
-        <li>性别： {{userSex}}</li>
-        <li>生日： {{birth}}</li>
-        <li>故乡： {{location}}</li>
+        <li>Tên nick: {{username}}</li>
+        <li>Giới tính: {{userSex}}</li>
+        <li>Ngày sinh: {{birth}}</li>
+        <li>Địa chỉ: {{location}}</li>
       </ul>
     </div>
     <div class="album-content">
-      <div class="album-title">个性签名: {{introduction}}</div>
+      <div class="album-title">Mô tả về tôi: {{introduction}}</div>
       <div class="songs-body">
         <album-content :songList="collectList">
-          <template slot="title">我的收藏</template>
+          <template slot="title">PlayList của tôi</template>
         </album-content>
       </div>
     </div>
@@ -42,15 +42,15 @@ export default {
       birth: '',
       location: '',
       introduction: '',
-      collection: [], // 存放收藏的歌曲ID
-      collectList: [] // 收藏的歌曲
+      collection: [],
+      collectList: []
     }
   },
   computed: {
     ...mapGetters([
       'userId',
       'id',
-      'listOfSongs' // 存放的音乐
+      'listOfSongs'
     ])
   },
   mounted () {
@@ -74,17 +74,15 @@ export default {
     },
     getuserSex (sex) {
       if (sex === 0) {
-        this.userSex = '女'
+        this.userSex = 'Nữ'
       } else if (sex === 1) {
-        this.userSex = '男'
+        this.userSex = 'Nam'
       }
     },
-    // 收藏的歌曲ID
     getCollection (userId) {
       HttpManager.getCollectionOfUser(userId)
         .then(res => {
           this.collection = res
-          // 通过歌曲ID获取歌曲信息
           for (let item of this.collection) {
             this.getCollectSongs(item.songId)
           }
@@ -94,7 +92,6 @@ export default {
           console.log(err)
         })
     },
-    // 获取收藏的歌曲
     getCollectSongs (id) {
       HttpManager.getSongOfId(id)
         .then(res => {

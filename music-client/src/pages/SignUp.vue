@@ -3,41 +3,41 @@
   <loginLogo/>
   <div class="signUp">
     <div class="signUp-head">
-      <span>用户注册</span>
+      <span>Đăng ký người dùng</span>
     </div>
     <el-form :model="registerForm" status-icon :rules="rules" ref="registerForm" label-width="70px" class="demo-ruleForm">
-      <el-form-item prop="username" label="用户名">
-        <el-input v-model="registerForm.username" placeholder="用户名"></el-input>
+      <el-form-item prop="username" label="Tên tk">
+        <el-input v-model="registerForm.username" placeholder="Tên tài khoản"></el-input>
       </el-form-item>
-      <el-form-item prop="password" label="密码">
-        <el-input type="password" placeholder="密码" v-model="registerForm.password"></el-input>
+      <el-form-item prop="password" label="Mkhẩu">
+        <el-input type="password" placeholder="Mật khẩu" v-model="registerForm.password"></el-input>
       </el-form-item>
-      <el-form-item prop="sex" label="性别">
+      <el-form-item prop="sex" label="Gtính">
         <el-radio-group v-model="registerForm.sex">
-          <el-radio :label="0">女</el-radio>
-          <el-radio :label="1">男</el-radio>
+          <el-radio :label="0">Nữ</el-radio>
+          <el-radio :label="1">Nam</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item prop="phoneNum" label="手机" >
-        <el-input  placeholder="手机" v-model="registerForm.phoneNum"></el-input>
+      <el-form-item prop="phoneNum" label="SĐT" >
+        <el-input  placeholder="Số điện thoại" v-model="registerForm.phoneNum"></el-input>
       </el-form-item>
-      <el-form-item prop="email" label="邮箱">
-        <el-input v-model="registerForm.email" placeholder="邮箱"></el-input>
+      <el-form-item prop="email" label="Email">
+        <el-input v-model="registerForm.email" placeholder="Email"></el-input>
       </el-form-item>
-      <el-form-item prop="birth" label="生日">
-        <el-date-picker type="date" placeholder="选择日期" v-model="registerForm.birth" style="width: 100%;"></el-date-picker>
+      <el-form-item prop="birth" label="Nsinh">
+        <el-date-picker type="date" placeholder="Ngày sinh" v-model="registerForm.birth" style="width: 100%;"></el-date-picker>
       </el-form-item>
-      <el-form-item prop="introduction" label="签名">
-        <el-input  type="textarea" placeholder="签名" v-model="registerForm.introduction" ></el-input>
+      <el-form-item prop="introduction" label="Gthiệu">
+        <el-input  type="textarea" placeholder="Mô tả bản thân" v-model="registerForm.introduction" ></el-input>
       </el-form-item>
-      <el-form-item prop="location" label="地区">
-        <el-select v-model="registerForm.location" placeholder="地区" style="width:100%">
+      <el-form-item prop="location" label="Khu vực">
+        <el-select v-model="registerForm.location" placeholder="Khu vực sinh sống" style="width:100%">
           <el-option v-for="item in cities" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </el-form-item>
       <div class="login-btn">
-        <el-button @click="goback(-1)">取消</el-button>
-        <el-button type="primary" @click="SignUp">确定</el-button>
+        <el-button @click="goback(-1)">Hủy bỏ</el-button>
+        <el-button type="primary" @click="SignUp">Xác nhận</el-button>
       </div>
     </el-form>
   </div>
@@ -58,7 +58,7 @@ export default {
   },
   data () {
     return {
-      registerForm: { // 注册
+      registerForm: {
         username: '',
         password: '',
         sex: '',
@@ -91,12 +91,12 @@ export default {
         .then(res => {
           console.log(res)
           if (res.code === 1) {
-            _this.notify('注册成功', 'success')
+            _this.notify('Đăng ký thành công dùi nha', 'success')
             setTimeout(function () {
               _this.$router.push({path: '/'})
             }, 2000)
           } else {
-            _this.notify('注册失败', 'error')
+            _this.notify('Đăng ký không thành cônggg', 'error')
           }
         })
         .catch(err => {

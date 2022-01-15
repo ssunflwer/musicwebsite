@@ -18,7 +18,7 @@ public class AdminController {
     @Autowired
     private AdminServiceImpl adminService;
 
-//    判断是否登录成功
+//    Xác định xem đăng nhập có thành công hay không
     @ResponseBody
     @RequestMapping(value = "/admin/login/status", method = RequestMethod.POST)
     public Object loginStatus(HttpServletRequest req, HttpSession session){

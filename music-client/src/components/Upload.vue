@@ -1,6 +1,6 @@
 <template>
   <div class="upload">
-    <p class="title">修改头像</p>
+    <p class="title">Sửa đổi hình đại diện</p>
     <hr/>
     <div class="section">
       <el-upload
@@ -10,8 +10,8 @@
         :on-success="handleAvatarSuccess"
         :before-upload="beforeAvatarUpload">
         <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或<em>修改头像</em></div>
-        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过10M</div>
+        <div class="el-upload__text">Kéo tệp vào đây, hoặc<em>đổi ảnh đại diện</em></div>
+        <div class="el-upload__tip" slot="tip">Chỉ có thể tải lên các tệp jpg/png và không quá 10M</div>
       </el-upload>
     </div>
   </div>
@@ -43,21 +43,21 @@ export default {
         this.imageUrl = URL.createObjectURL(file.raw)
         this.$store.commit('setAvator', res.avator)
         this.$message({
-          message: '修改成功',
+          message: 'Sửa đổi thành công gòi nha',
           type: 'success'
         })
       } else {
-        this.notify('修改失败', 'error')
+        this.notify('Có lỗi ở đoạn nàyyy', 'error')
       }
     },
     beforeAvatarUpload (file) {
       const isJPG = file.type === 'image/jpeg'
       const isLt2M = file.size / 1024 / 1024 < 10
       if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
+        this.$message.error('Ảnh hồ sơ đã tải lên chỉ có thể ở định dạng JPG!')
       }
       if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 10MB!')
+        this.$message.error('Kích thước của ảnh đại diện tải lên không được vượt quá 10MB!')
       }
       return isJPG && isLt2M
     }

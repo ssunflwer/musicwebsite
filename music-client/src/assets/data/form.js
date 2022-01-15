@@ -1,4 +1,4 @@
-// 匹配规则
+// RULES
 const rules = {
   username: [
     { required: true, trigger: 'blur' }
@@ -7,129 +7,123 @@ const rules = {
     { required: true, trigger: 'blur' }
   ],
   sex: [
-    { required: true, message: '请选择性别', trigger: 'change' }
+    { required: true, message: 'Zui lòng chọn giới tính', trigger: 'change' }
   ],
   phoneNum: [
-    { essage: '请选择日期', trigger: 'blur' }
+    { essage: 'Zui lòng chọn một ngày', trigger: 'blur' }
   ],
   email: [
-    { message: '请输入邮箱地址', trigger: 'blur' },
-    { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+    { message: 'Nhập địa chỉ email ikkk', trigger: 'blur' },
+    { type: 'email', message: 'Vui lòng nhập địa chỉ email chính xác', trigger: ['blur', 'change'] }
   ],
   birth: [
-    { required: true, type: 'date', message: '请选择日期', trigger: 'change' }
+    { required: true, type: 'date', message: 'Chọn ngày sinhh', trigger: 'change' }
   ],
   introduction: [
-    { message: '请输入介绍', trigger: 'blur' }
+    { message: 'Vui lòng nhập phần giới thiệu', trigger: 'blur' }
   ],
   location: [
-    { message: '请输入地区', trigger: 'change' }
+    { message: 'Vui lòng nhập một khu vực', trigger: 'change' }
   ]
 }
 
-// 地区选择
+// Lựa chọn khu vực
 const cities = [{
-  value: '北京',
-  label: '北京'
+  value: 'Hà Nội',
+  label: 'Hà Nội'
 }, {
-  value: '天津',
-  label: '天津'
+  value: 'Hải Dương',
+  label: 'Hải Dương'
 }, {
-  value: '河北',
-  label: '河北'
+  value: 'Sa Pa',
+  label: 'Sa Pa'
 }, {
-  value: '山西',
-  label: '山西'
+  value: 'Đà Nẵng',
+  label: 'Đà Nẵng'
 }, {
-  value: '内蒙古',
-  label: '内蒙古'
+  value: 'Phú Quốc',
+  label: 'Phú Quốc'
 }, {
-  value: '辽宁',
-  label: '辽宁'
+  value: 'Cô Tô',
+  label: 'Cô Tô'
 }, {
-  value: '吉林',
-  label: '吉林'
+  value: 'Cát Bà',
+  label: 'Cát Bà'
 }, {
-  value: '黑龙江',
-  label: '黑龙江'
+  value: 'Nha Trang',
+  label: 'Nha Trang'
 }, {
-  value: '上海',
-  label: '上海'
+  value: 'Sài Gòn',
+  label: 'Sài Gòn'
 }, {
-  value: '江苏',
-  label: '江苏'
+  value: 'Hải Phòng',
+  label: 'Hải Phòng'
 }, {
-  value: '浙江',
-  label: '浙江'
+  value: 'Ninh Bình',
+  label: 'Ninh Bình'
 }, {
-  value: '安徽',
-  label: '安徽'
+  value: 'Hà Nam',
+  label: 'Hà Nam'
 }, {
-  value: '福建',
-  label: '福建'
+  value: 'Hội An',
+  label: 'Hội An'
 }, {
-  value: '江西',
-  label: '江西'
+  value: 'Vĩnh Phúc',
+  label: 'Vĩnh Phúc'
 }, {
-  value: '山东',
-  label: '山东'
+  value: 'Yến Bái',
+  label: 'Yến Bái'
 }, {
-  value: '河南',
-  label: '河南'
+  value: 'Điện Biên Phủ',
+  label: 'Điện Biên Phủ'
 }, {
-  value: '湖北',
-  label: '湖北'
+  value: 'Mộc Châu',
+  label: 'Mộc Châu'
 }, {
-  value: '湖南',
-  label: '湖南'
+  value: 'Đà Lạt',
+  label: 'Đà Lạt'
 }, {
-  value: '广东',
-  label: '广东'
+  value: 'Nghệ An',
+  label: 'Nghệ An'
 }, {
-  value: '广西',
-  label: '广西'
+  value: 'Hà Tĩnh',
+  label: 'Hà Tĩnh'
 }, {
-  value: '海南',
-  label: '海南'
+  value: 'Thanh Hóa',
+  label: 'Thanh Hóa'
 }, {
-  value: '重庆',
-  label: '重庆'
+  value: 'Mê Linh',
+  label: 'Mê Linh'
 }, {
-  value: '四川',
-  label: '四川'
+  value: 'Sóc Sơn',
+  label: 'Sóc Sơn'
 }, {
-  value: '贵州',
-  label: '贵州'
+  value: 'Buôn Mê',
+  label: 'Buôn Mê'
 }, {
-  value: '云南',
-  label: '云南'
+  value: 'Trà vinh',
+  label: 'Trà vinh'
 }, {
-  value: '西藏',
-  label: '西藏'
+  value: 'Huế',
+  label: 'Huế'
 }, {
-  value: '陕西',
-  label: '陕西'
+  value: 'Quảng Nam',
+  label: 'Quảng Nam'
 }, {
-  value: '甘肃',
-  label: '甘肃'
+  value: 'Quảng Ngãi',
+  label: 'Quảng Ngãi'
 }, {
-  value: '青海',
-  label: '青海'
+  value: 'Hồ Chí Minh',
+  label: 'Hồ Chí Minh'
 }, {
-  value: '宁夏',
-  label: '宁夏'
+  value: 'Quảng Ninh',
+  label: 'Quảng Ninh'
 }, {
-  value: '新疆',
-  label: '新疆'
+  value: 'Bình Định',
+  label: 'Bình Định'
 }, {
-  value: '香港',
-  label: '香港'
-}, {
-  value: '澳门',
-  label: '澳门'
-}, {
-  value: '台湾',
-  label: '台湾'
+  value: 'Khánh Hòa',
+  label: 'Khánh Hòa'
 }]
 
 export {

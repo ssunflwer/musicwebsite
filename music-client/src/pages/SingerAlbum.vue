@@ -5,9 +5,9 @@
         <img :src="attachImageUrl(singer.pic)" alt="">
       </div>
       <ul class="info">
-        <li v-if="singer.sex !== 2">性别：{{attachSex(singer.sex)}}</li>
-        <li>生日：{{attachBirth(singer.birth)}}</li>
-        <li>故乡：{{singer.location}}</li>
+        <li v-if="singer.sex !== 2">Giới tính: {{attachSex(singer.sex)}}</li>
+        <li>Ngày sinh: {{attachBirth(singer.birth)}}</li>
+        <li>Khu vực: {{singer.location}}</li>
       </ul>
     </div>
     <div class="album-content">
@@ -17,7 +17,7 @@
       </div>
       <div class="content">
         <album-content :songList="listOfSongs">
-          <template slot="title">歌单</template>
+          <template slot="title">Danh sách bài hát</template>
         </album-content>
       </div>
     </div>
@@ -49,7 +49,7 @@ export default {
     ])
   },
   mounted () {
-    this.singerId = this.$route.params.id // 给歌单ID赋值
+    this.singerId = this.$route.params.id
     this.singer = this.tempList
     this.getSongList()
   },
@@ -65,9 +65,9 @@ export default {
     },
     attachSex (value) {
       if (value === 0) {
-        return '女'
+        return 'Nữ'
       } else if (value === 1) {
-        return '男'
+        return 'Nam'
       }
     }
   }

@@ -1,19 +1,18 @@
 <template>
   <div class="home">
-    <!--轮播图-->
     <el-carousel class="swiper-container" :interval="4000" type="card" height="280px">
       <el-carousel-item v-for="(item, index) in swiperList" :key="index">
         <img :src="item.picImg"/>
       </el-carousel-item>
     </el-carousel>
-    <!--热门歌单-->
+    <!--Danh sách phát phổ biến-->
     <div class="section">
-      <div class="section-title">歌单</div>
+      <div class="section-title">Danh sách bài hát</div>
       <content-list :contentList="songList" path="song-list-album"></content-list>
     </div>
-    <!--热门歌手-->
+    <!--Ca sĩ nổi tiếng-->
     <div class="section">
-      <div class="section-title">歌手</div>
+      <div class="section-title">Ca sĩ</div>
       <content-list :contentList="singerList" path="singer-album"></content-list>
     </div>
   </div>
@@ -31,15 +30,15 @@ export default {
   },
   data () {
     return {
-      swiperList: swiperList, // 轮播图列表
-      songList: [], // 歌单列表
-      singerList: [] // 歌手列表
+      swiperList: swiperList, // Danh sách biểu đồ băng chuyền
+      songList: [], // Danh sách phát
+      singerList: [] // Danh sách ca sỹ
     }
   },
   created () {
-    // 获取歌单列表
+    // Nhận danh sách phát
     this.getSongList()
-    // 获取歌手列表
+    // Nhận danh sách ca sỹ
     this.getSingerList()
   },
   methods: {

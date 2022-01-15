@@ -3,21 +3,23 @@
   <login-logo/>
   <div class="login">
     <div class="login-head">
-      <span>帐号登录</span>
+      <span>Đăng nhập tài khoản</span>
     </div>
     <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" class="demo-ruleForm" >
       <el-form-item prop="username">
-        <el-input placeholder="用户名" v-model="loginForm.username"></el-input>
+        <el-input placeholder="Tên tài khoản" v-model="loginForm.username"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" placeholder="密码" v-model="loginForm.password" @keyup.enter.native="loginIn"></el-input>
+        <el-input type="password" placeholder="Mật khẩu" v-model="loginForm.password" @keyup.enter.native="loginIn"></el-input>
       </el-form-item>
       <div class="login-btn">
-        <el-button @click="goSignUp">注册</el-button>
-        <el-button type="primary" @click="handleleLoginIn">登录</el-button>
+        <el-button @click="goSignUp">Đăng ký</el-button>
+        <el-button type="primary" @click="handleleLoginIn">Đăng nhập</el-button>
       </div>
+
     </el-form>
   </div>
+  <div><div id="login-btn-gg"></div></div>
 </div>
 </template>
 
@@ -35,35 +37,35 @@ export default {
   data: function () {
     let validateName = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error('用户名不能为空'))
+        return callback(new Error('Tên ngươi dung không được để trống đâu nha'))
       } else {
         callback()
       }
     }
     let validatePassword = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入密码'))
+        callback(new Error('Xin zui lòng điền mật khẩu dùm'))
       } else {
         callback()
       }
     }
     return {
-      loginForm: { // 登录用户名密码
+      loginForm: { // Đăng nhập tên ng dùng và mật khẩu
         username: '',
         password: ''
       },
       rules: {
         username: [
-          { validator: validateName, message: '请输入用户名', trigger: 'blur' }
+          { validator: validateName, message: 'Vui lòng nhập tên người dùng ha', trigger: 'blur' }
         ],
         password: [
-          { validator: validatePassword, message: '请输入密码', trigger: 'blur' }
+          { validator: validatePassword, message: 'Nhập mật khẩu nữa chứ', trigger: 'blur' }
         ]
       }
     }
   },
   mounted () {
-    this.changeIndex('登录')
+    this.changeIndex('Đăng nhập')
   },
   methods: {
     changeIndex (value) {
@@ -76,21 +78,21 @@ export default {
       params.append('password', this.loginForm.password)
       HttpManager.loginIn(params)
         .then(res => {
-          // console.log('-----------获取登录信息---------------')
+          // console.log('-----------Lấy thông tin đăng nhập---------------')
           if (res.code === 1) {
             _this.$message({
-              message: '登录成功',
+              message: 'Okay được rồi đấy',
               type: 'success'
             })
             _this.setUserMsg(res.userMsg[0])
             _this.$store.commit('setLoginIn', true)
             setTimeout(function () {
-              _this.changeIndex('首页')
+              _this.changeIndex('trang đầu')
               _this.$router.push({path: '/'})
               _this.$router.go(0)
             }, 2000)
           } else {
-            _this.notify('用户名或密码错误', 'error')
+            _this.notify('Sai cái gì rồi nha', 'error')
           }
         })
         .catch(failResponse => {})

@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrap">
-    <div class="ms-title">Yin-music 后台管理</div>
+    <div class="ms-title">Quản Lý Âm Nhạc</div>
     <div class="ms-login">
       <el-form
         ref="ruleForm"
@@ -20,9 +20,9 @@
           ></el-input>
         </el-form-item>
         <div class="login-btn">
-          <el-button type="primary" @click="submitForm">登录</el-button>
+          <el-button type="primary" @click="submitForm">Đăng nhập</el-button>
         </div>
-        <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用户名和密码要写数据库里的。</p>
+        <p style="font-size:12px;line-height:30px;color:#999;">Tips : Tên người dùng và mật khẩu phải được viết trong cơ sở dữ liệu.</p>
       </el-form>
     </div>
   </div>
@@ -42,9 +42,9 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
+          { required: true, message: 'Vui lòng nhập tên người dùng', trigger: 'blur' }
         ],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+        password: [{ required: true, message: 'Xin vui lòng nhập mật khẩu', trigger: 'blur' }]
       }
     }
   },
@@ -57,9 +57,9 @@ export default {
         .then(res => {
           if (res.code === 1) {
             this.$router.push('/Info')
-            this.notify('欢迎回来', 'success')
+            this.notify('Chào mừng trở lại', 'success')
           } else {
-            this.notify('登录失败', 'error')
+            this.notify('Đăng nhập thất bại', 'error')
           }
         })
         .catch(err => {

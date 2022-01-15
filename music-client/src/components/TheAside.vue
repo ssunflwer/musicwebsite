@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-fade">
     <div class="the-aside" v-if="showAside">
-      <h2 class="title">播放列表</h2>
+      <h2 class="title">Danh sách phát</h2>
       <ul class="menus">
         <li v-for="(item, index) in listOfSongs" :class="{'is-play': id === item.id}" :key="index" @click="toplay(item.id, item.url, item.pic, index, item.name, item.lyric)">
           {{replaceFName(item.name)}}
@@ -20,9 +20,9 @@ export default {
   mixins: [mixin],
   computed: {
     ...mapGetters([
-      'id', // 音乐id
-      'listOfSongs', // 当前歌单列表
-      'showAside' // 是否显示侧边栏
+      'id', // ID nhạc
+      'listOfSongs', // Danh sách phát hiện tại
+      'showAside' // Có hiển thị thanh bên hay không
     ])
   },
   mounted () {

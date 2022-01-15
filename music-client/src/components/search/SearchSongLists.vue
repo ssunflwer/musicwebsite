@@ -29,7 +29,7 @@ export default {
       HttpManager.getSongListOfLikeTitle(this.$route.query.keywords)
         .then(res => {
           if (!res.length) {
-            this.notify('暂无该歌曲内容', 'warning')
+            this.notify('Không có nội dung của bài hát', 'warning')
           } else {
             this.albumDatas = res
           }

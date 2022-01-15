@@ -7,7 +7,7 @@ const constantRoutes = [
   {
     path: '/Home',
     component: resolve => require(['../components/Home.vue'], resolve),
-    meta: { title: '自述文件' },
+    meta: { title: 'README' },
     children: [
       {
         path: '/Info',
@@ -58,7 +58,7 @@ const constantRoutes = [
 ]
 
 export default new Router({
-  mode: 'history', // 去掉url中的#
+  mode: 'history', // Xóa # trong url
   scrollBehavior: (o, from, savedPosition) => ({ x: 0, y: 0 }),
   routes: constantRoutes
 })

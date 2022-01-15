@@ -33,22 +33,22 @@ export default {
         {
           icon: 'el-icon-s-data',
           index: 'info',
-          title: '系统首页'
+          title: 'Trang chủ'
         },
         {
           icon: 'el-icon-user-solid',
           index: 'consumer',
-          title: '用户管理'
+          title: 'Người dùng'
         },
         {
           icon: 'el-icon-service',
           index: 'singer',
-          title: '歌手管理'
+          title: 'Ca sĩ'
         },
         {
           icon: 'el-icon-document',
           index: 'songList',
-          title: '歌单管理'
+          title: 'Album'
         }
       ]
     }

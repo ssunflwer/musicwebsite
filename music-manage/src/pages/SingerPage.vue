@@ -2,13 +2,13 @@
   <div class="table">
     <div class="container">
       <div class="handle-box">
-        <el-button class="handle-del mr10" type="primary" size="mini" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" class="handle-input mr10" size="mini" placeholder="筛选关键词"></el-input>
-        <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加歌手</el-button>
+        <el-button class="handle-del mr10" type="primary" size="mini" @click="delAll">Xóa hàng loạt</el-button>
+        <el-input v-model="select_word" class="handle-input mr10" size="mini" placeholder="Lọc từ khóa"></el-input>
+        <el-button type="primary" size="mini" @click="centerDialogVisible = true">Thêm ca sĩ</el-button>
       </div>
       <el-table ref="multipleTable" size="mini" border style="width: 100%" height="550px" :data="data" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40"></el-table-column>
-        <el-table-column label="歌手图片" width="110" align="center">
+        <el-table-column label="Ava" width="110" align="center">
           <template slot-scope="scope">
             <div class="singer-img">
               <img :src="getUrl(scope.row.pic)" alt="" style="width: 100%;"/>
@@ -20,36 +20,36 @@
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
               >
-              <el-button size="mini">更新图片</el-button>
+              <el-button size="mini">Sửa ava</el-button>
             </el-upload>
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="歌手" width="120" align="center"></el-table-column>
-        <el-table-column label="性别" width="50" align="center">
+        <el-table-column prop="name" label="Tên" width="120" align="center"></el-table-column>
+        <el-table-column label="Gtính" width="50" align="center">
           <template slot-scope="scope">
             <div>{{changeSex(scope.row.sex) }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="出生" width="120" align="center">
+        <el-table-column label="NSinh" width="120" align="center">
           <template slot-scope="scope">
               <div>{{attachBirth(scope.row.birth) }}</div>
           </template>
         </el-table-column>
-        <el-table-column prop="location" label="地区" width="100" align="center"></el-table-column>
-        <el-table-column label="简介">
+        <el-table-column prop="location" label="Khu vực" width="100" align="center"></el-table-column>
+        <el-table-column label="Mô tả">
           <template slot-scope="scope">
             <p style="height: 100px; overflow: scroll">{{ scope.row.introduction }}</p>
           </template>
         </el-table-column>
-        <el-table-column label="歌曲管理" width="110" align="center">
+        <el-table-column label="DS Bài hát" width="110" align="center">
           <template slot-scope="scope">
-            <el-button size="mini" @click="songEdit(scope.row.id, scope.row.name)">歌曲管理</el-button>
+            <el-button size="mini" @click="songEdit(scope.row.id, scope.row.name)">Bài hát</el-button>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="150" align="center">
+        <el-table-column label="Tác vụ" width="150" align="center">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            <el-button size="mini" @click="handleEdit(scope.row)">Edit</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">Xóa</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <el-dialog title="添加歌手" :visible.sync="centerDialogVisible" width="400px" center>
+    <el-dialog title="Thêm ca sĩ" :visible.sync="centerDialogVisible" width="400px" center>
       <el-form
         class="demo-ruleForm"
         :model="registerForm"
@@ -73,74 +73,74 @@
         ref="registerForm"
         label-width="80px"
         >
-        <el-form-item prop="name" label="歌手名" size="mini">
-          <el-input v-model="registerForm.name" placeholder="歌手名"></el-input>
+        <el-form-item prop="name" label="Tên" size="mini">
+          <el-input v-model="registerForm.name" placeholder="Tên"></el-input>
         </el-form-item>
-        <el-form-item label="性别" size="mini">
+        <el-form-item label="Giới tính" size="mini">
           <el-radio-group v-model="registerForm.sex">
-            <el-radio :label="0">女</el-radio>
-            <el-radio :label="1">男</el-radio>
-            <el-radio :label="2">组合</el-radio>
-            <el-radio :label="3">不明</el-radio>
+            <el-radio :label="0">Nữ</el-radio>
+            <el-radio :label="1">Nam</el-radio>
+            <el-radio :label="2">Nhóm nhạc</el-radio>
+            <el-radio :label="3">Chưa rõ</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item prop="location" label="故乡" size="mini">
-          <el-input v-model="registerForm.location" placeholder="故乡"></el-input>
+        <el-form-item prop="location" label="Quốc gia" size="mini">
+          <el-input v-model="registerForm.location" placeholder="Quốc gia"></el-input>
         </el-form-item>
-        <el-form-item prop="birth" label="出生" size="mini">
+        <el-form-item prop="birth" label="NSinh" size="mini">
           <el-date-picker
             type="date"
-            placeholder="选择日期"
+            placeholder="Chọn ngày"
             v-model="registerForm.birth"
             style="width: 100%;"
           ></el-date-picker>
         </el-form-item>
-        <el-form-item prop="introduction" label="歌手介绍" size="mini">
-          <el-input v-model="registerForm.introduction" type="textarea" placeholder="歌手介绍"></el-input>
+        <el-form-item prop="introduction" label="Mô tả" size="mini">
+          <el-input v-model="registerForm.introduction" type="textarea" placeholder="Giới thiệu ca sĩ"></el-input>
         </el-form-item>
       </el-form>
       <span class="dialog-footer" slot="footer">
-        <el-button size="mini" @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="addsinger">确 定</el-button>
+        <el-button size="mini" @click="centerDialogVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="addsinger">Xác nhận</el-button>
       </span>
     </el-dialog>
 
-    <!-- 编辑弹出框 -->
-    <el-dialog title="编辑" :visible.sync="editVisible" width="400px">
+    <!-- Chỉnh sửa cửa sổ bật lên -->
+    <el-dialog title="Chỉnh sửa" :visible.sync="editVisible" width="400px">
       <el-form ref="form" :model="form" label-width="60px">
-        <el-form-item label="歌手" size="mini">
+        <el-form-item label="Tên" size="mini">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="性别" size="mini">
+        <el-form-item label="Gtính" size="mini">
           <el-radio-group v-model="form.sex">
-            <el-radio :label="0">女</el-radio>
-            <el-radio :label="1">男</el-radio>
-            <el-radio :label="2">组合</el-radio>
-            <el-radio :label="3">不明</el-radio>
+            <el-radio :label="0">Nữ</el-radio>
+            <el-radio :label="1">Nam</el-radio>
+            <el-radio :label="2">Nhóm nhạc</el-radio>
+            <el-radio :label="3">Chưa rõ</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="生日" size="mini">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.birth" style="width: 100%;"></el-date-picker>
+        <el-form-item label="NSinh" size="mini">
+          <el-date-picker type="date" placeholder="Chọn ngày" v-model="form.birth" style="width: 100%;"></el-date-picker>
         </el-form-item>
-        <el-form-item label="地区" size="mini">
+        <el-form-item label="KVực" size="mini">
           <el-input v-model="form.location"></el-input>
         </el-form-item>
-        <el-form-item label="简介" size="mini">
+        <el-form-item label="Mô tả" size="mini">
           <el-input type="textarea" v-model="form.introduction"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini"  @click="editVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="saveEdit">确 定</el-button>
+        <el-button size="mini"  @click="editVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="saveEdit">Xác nhận</el-button>
       </span>
     </el-dialog>
 
-    <!-- 删除提示框 -->
-    <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-      <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
+    <!-- Xóa chú thích công cụ -->
+    <el-dialog title="Gợi ý" :visible.sync="delVisible" width="300px" center>
+      <div class="del-dialog-cnt" align="center">Không thể khôi phục thao tác xóa. Bạn có chắc chắn muốn xóa không?</div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="delVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="deleteRow">确 定</el-button>
+        <el-button size="mini" @click="delVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="deleteRow">Xác nhận</el-button>
       </span>
     </el-dialog>
   </div>
@@ -156,7 +156,7 @@ export default {
   data () {
     return {
       registerForm: {
-        // 添加框信息
+        // Thêm thông tin hộp
         name: '',
         sex: '',
         birth: '',
@@ -171,7 +171,7 @@ export default {
       delVisible: false,
       select_word: '',
       form: {
-        // 编辑框信息
+        // Chỉnh sửa thông tin hộp
         id: '',
         name: '',
         sex: '',
@@ -180,13 +180,13 @@ export default {
         location: '',
         introduction: ''
       },
-      pageSize: 5, // 页数
-      currentPage: 1, // 当前页
+      pageSize: 5, // Số trang
+      currentPage: 1, // Trang hiện tại
       idx: -1
     }
   },
   computed: {
-    // 计算当前表格中的数据
+    // Tính toán dữ liệu trong bảng hiện tại
     data () {
       return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
     }
@@ -209,14 +209,14 @@ export default {
     this.getData()
   },
   methods: {
-    // 获取当前页
+    // Lấy trang hiện tại
     handleCurrentChange (val) {
       this.currentPage = val
     },
     uploadUrl (id) {
       return `${this.$store.state.HOST}/singer/avatar/update?id=${id}`
     },
-    // 添加歌手
+    // Thêm ca sĩ
     addsinger () {
       let d = this.registerForm.birth
       let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
@@ -232,9 +232,9 @@ export default {
           if (res.code === 1) {
             this.getData()
             this.registerForm = {}
-            this.notify('添加成功', 'success')
+            this.notify('Thêm thành công', 'success')
           } else {
-            this.notify('添加失败', 'error')
+            this.notify('Thêm thất bại', 'error')
           }
         })
         .catch(err => {
@@ -242,7 +242,7 @@ export default {
         })
       this.centerDialogVisible = false
     },
-    // 获取歌手
+    // Nhận một ca sĩ
     getData () {
       this.tableData = []
       this.tempDate = []
@@ -252,7 +252,7 @@ export default {
         this.currentPage = 1
       })
     },
-    // 编辑
+    // Biên tập
     handleEdit (row) {
       this.editVisible = true
       this.idx = row.id
@@ -267,7 +267,7 @@ export default {
         introduction: row.introduction
       }
     },
-    // 保存编辑
+    // Lưu chỉnh sửa
     saveEdit () {
       let d = new Date(this.form.birth)
       let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
@@ -283,9 +283,9 @@ export default {
         .then(res => {
           if (res.code === 1) {
             this.getData()
-            this.notify('编辑成功', 'success')
+            this.notify('Chỉnh sửa thành công', 'success')
           } else {
-            this.notify('编辑失败', 'error')
+            this.notify('Chỉnh sửa thất bại', 'error')
           }
         })
         .catch(err => {
@@ -293,15 +293,15 @@ export default {
         })
       this.editVisible = false
     },
-    // 确定删除
+    // Xác nhận xóa
     deleteRow () {
       HttpManager.deleteSinger(this.idx)
         .then(res => {
           if (res) {
             this.getData()
-            this.notify('删除成功', 'success')
+            this.notify('Xóa thành công', 'success')
           } else {
-            this.notify('删除失败', 'error')
+            this.notify('Xóa thất bại', 'error')
           }
         })
         .catch(err => {

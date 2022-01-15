@@ -3,19 +3,19 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-tickets"></i> 歌曲信息
+          <i class="el-icon-tickets"></i> Thông tin bài hát
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">
       <div class="handle-box">
-        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">批量删除</el-button>
-        <el-input v-model="select_word" size="mini" placeholder="筛选关键词" class="handle-input mr10"></el-input>
-        <el-button type="primary" size="mini" @click="centerDialogVisible = true">添加歌曲</el-button>
+        <el-button type="primary" size="mini" class="handle-del mr10" @click="delAll">Xóa hàng loạt</el-button>
+        <el-input v-model="select_word" size="mini" placeholder="Lọc từ khóa" class="handle-input mr10"></el-input>
+        <el-button type="primary" size="mini" @click="centerDialogVisible = true">Thêm bài hát</el-button>
       </div>
       <el-table :data="data" size="mini" border style="width: 100%" ref="multipleTable" height="550px" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40"></el-table-column>
-        <el-table-column label="歌手图片" width="110" align="center">
+        <el-table-column label="Ava" width="110" align="center">
           <template slot-scope="scope">
             <div style="width: 80px; height: 80px; overflow: hidden">
               <img :src="getUrl(scope.row.pic)" alt="" style="width: 100%;"/>
@@ -34,9 +34,9 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="歌名" prop="name" width="150" align="center"></el-table-column>
-        <el-table-column label="专辑" prop="introduction" width="150" align="center"></el-table-column>
-        <el-table-column label="歌词" align="center">
+        <el-table-column label="Tên" prop="name" width="150" align="center"></el-table-column>
+        <el-table-column label="Mô tả" prop="introduction" width="150" align="center"></el-table-column>
+        <el-table-column label="Lyrics" align="center">
           <template slot-scope="scope">
             <ul style="height: 100px; overflow: scroll">
               <li>
@@ -46,7 +46,7 @@
             </ul>
           </template>
         </el-table-column>
-        <el-table-column label="资源更新" width="100" align="center">
+        <el-table-column label="Edit" width="100" align="center">
           <template slot-scope="scope">
             <el-upload
               class="upload-demo"
@@ -55,7 +55,7 @@
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
               >
-                <el-button size="mini">更新图片</el-button>
+                <el-button size="mini">Hình ảnh</el-button>
             </el-upload>
             <br>
             <el-upload
@@ -64,19 +64,19 @@
               :show-file-list="false"
               :on-success="handleSongSuccess"
               :before-upload="beforeSongUpload">
-              <el-button size="mini">更新歌曲</el-button>
+              <el-button size="mini">Bài hát</el-button>
             </el-upload>
           </template>
         </el-table-column>
-        <el-table-column label="评论" width="80" align="center">
+        <el-table-column label="Cmts" width="80" align="center">
             <template  slot-scope="scope">
-                <el-button size="mini" @click="getComment(data[scope.$index].id)">评论</el-button>
+                <el-button size="mini" @click="getComment(data[scope.$index].id)">Nhận xét</el-button>
             </template>
         </el-table-column>
-        <el-table-column label="操作" width="150" align="center">
+        <el-table-column label="Tác vụ" width="150" align="center">
             <template slot-scope="scope">
-                <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+                <el-button size="mini" @click="handleEdit(scope.row)">Edit</el-button>
+                <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">Xóa</el-button>
             </template>
         </el-table-column>
       </el-table>
@@ -92,58 +92,58 @@
       </div>
     </div>
 
-    <!--添加歌曲-->
-    <el-dialog title="添加歌曲" :visible.sync="centerDialogVisible" width="400px" center>
+    <!--Thêm bài hát-->
+    <el-dialog title="Thêm bài hát" :visible.sync="centerDialogVisible" width="400px" center>
       <el-form action="" :model="registerForm" id="tf">
         <div>
-          <label>歌曲名</label>
+          <label>Tên bài hát</label>
           <el-input type="text" name="name"></el-input>
         </div>
         <div>
-          <label>专辑</label>
+          <label>Album</label>
           <el-input type="text" value="" name="introduction"></el-input>
         </div>
         <div>
-          <label>歌词</label>
+          <label>Lời bài hát</label>
           <el-input type="textarea" value="" name="lyric"></el-input>
         </div>
         <div>
-          <label>歌曲上传</label>
+          <label>Tải lên bài hát</label>
           <br>
           <input type="file" name="file" id="upadte-file-input">
         </div>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addSong">确 定</el-button>
+        <el-button @click="centerDialogVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" @click="addSong">Xác nhận</el-button>
       </span>
     </el-dialog>
 
-    <!-- 编辑弹出框 -->
-    <el-dialog title="编辑" :visible.sync="editVisible" width="400px">
+    <!-- Chỉnh sửa cửa sổ bật lên -->
+    <el-dialog title="Chỉnh sửa" :visible.sync="editVisible" width="400px">
       <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="歌手-歌曲" size="mini">
+        <el-form-item label="Tên" size="mini">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="简介" size="mini">
+        <el-form-item label="Des" size="mini">
           <el-input v-model="form.introduction"></el-input>
         </el-form-item>
-        <el-form-item label="歌词" size="mini">
+        <el-form-item label="Addr" size="mini">
           <el-input  type="textarea" v-model="form.lyric"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="editVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="saveEdit">确 定</el-button>
+        <el-button size="mini" @click="editVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="saveEdit">Xác nhận</el-button>
       </span>
     </el-dialog>
 
-    <!-- 删除提示框 -->
-    <el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-      <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
+    <!-- Xóa chú thích công cụ -->
+    <el-dialog title="Gợi ý" :visible.sync="delVisible" width="300px" center>
+      <div class="del-dialog-cnt" align="center">Không thể khôi phục thao tác xóa. Bạn có chắc chắn muốn xóa không?</div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="mini" @click="delVisible = false">取 消</el-button>
-        <el-button type="primary" size="mini" @click="deleteRow">确 定</el-button>
+        <el-button size="mini" @click="delVisible = false">Hủy bỏ</el-button>
+        <el-button type="primary" size="mini" @click="deleteRow">Xác nhận</el-button>
       </span>
     </el-dialog>
   </div>
@@ -164,7 +164,7 @@ export default {
   mixins: [mixin],
   data () {
     return {
-      toggle: false, // 控制播放图标状态
+      toggle: false, // Kiểm soát trạng thái của biểu tượng play
       singerId: '',
       singerName: '',
       registerForm: {
@@ -176,7 +176,7 @@ export default {
       tableData: [],
       tempDate: [],
       is_search: false,
-      multipleSelection: [], // 记录要删除的歌曲
+      multipleSelection: [], // Ghi lại bài hát sẽ bị xóa
       centerDialogVisible: false,
       editVisible: false,
       delVisible: false,
@@ -192,8 +192,8 @@ export default {
         lyric: '',
         url: ''
       },
-      pageSize: 5, // 页数
-      currentPage: 1, // 当前页
+      pageSize: 5, // Số trang
+      currentPage: 1, // Trang hiện tại
       idx: -1,
       BOFANG: ICON.BOFANG,
       ZANTING: ICON.ZANTING
@@ -201,9 +201,9 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'isPlay' // 播放状态
+      'isPlay' // Trạng thái play
     ]),
-    // 计算当前表格中的数据
+    // Tính toán dữ liệu trong bảng hiện tại
     data () {
       return this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
     },
@@ -238,7 +238,7 @@ export default {
     this.$store.commit('setIsPlay', false)
   },
   methods: {
-    // 获取歌曲
+    // Nhận bài hát
     getData () {
       this.tableData = []
       this.tempDate = []
@@ -259,11 +259,11 @@ export default {
         this.$store.commit('setIsPlay', true)
       }
     },
-    // 更新歌曲图片
+    // Cập nhật hình ảnh bài hát
     uploadUrl (id) {
       return `${this.$store.state.HOST}/song/img/update?id=${id}`
     },
-    // 更新歌曲url
+    // Cập nhật url bài hát
     uploadSongUrl (id) {
       return `${this.$store.state.HOST}/song/url/update?id=${id}`
     },
@@ -272,32 +272,32 @@ export default {
       const extension = testmsg === 'mp3'
       if (!extension) {
         this.$message({
-          message: '上传文件只能是mp3格式！',
+          message: 'Các tệp tải lên chỉ có thể ở định dạng mp3!',
           type: 'error'
         })
       }
       return extension
     },
-    // 获取当前页
+    // Lấy trang hiện tại
     handleCurrentChange (val) {
       this.currentPage = val
     },
     handleSongSuccess (res, file) {
       if (res.code === 1) {
         this.getData()
-        this.notify('上传成功', 'success')
+        this.notify('Thành công', 'success')
       } else {
-        this.notify('上传失败', 'error')
+        this.notify('Thất bại', 'error')
       }
     },
-    // 添加音乐
+    // Thêm nhạc
     addSong () {
       let _this = this
       var form = new FormData(document.getElementById('tf'))
       form.append('singerId', this.singerId)
       form.set('name', this.singerName + '-' + form.get('name'))
       if (!form.get('lyric')) {
-        form.set('lyric', '[00:00:00]暂无歌词')
+        form.set('lyric', '[00:00:00]Không có lời bài hát')
       }
       var req = new XMLHttpRequest()
       req.onreadystatechange = function () {
@@ -308,7 +308,7 @@ export default {
             _this.registerForm = {}
             _this.notify(res.msg, 'success')
           } else if (!res.code) {
-            _this.notify('上传失败', 'error')
+            _this.notify('Tải lên thất bại', 'error')
           }
         }
       }
@@ -316,7 +316,7 @@ export default {
       req.send(form)
       _this.centerDialogVisible = false
     },
-    // 编辑
+    // Biên tập
     handleEdit (row) {
       this.idx = row.id
       this.form = {
@@ -335,7 +335,7 @@ export default {
     getComment (id) {
       this.$router.push({path: '/Comment', query: {id: id, type: 0}})
     },
-    // 保存编辑
+    // Lưu chỉnh sửa
     saveEdit () {
       let params = new URLSearchParams()
       params.append('id', this.form.id)
@@ -347,9 +347,9 @@ export default {
         .then(res => {
           if (res) {
             this.getData()
-            this.notify('编辑成功', 'success')
+            this.notify('Chỉnh sửa thành công', 'success')
           } else {
-            this.notify('编辑失败', 'error')
+            this.notify('Chỉnh sửa không thành công', 'error')
           }
         })
         .catch(err => {
@@ -357,15 +357,15 @@ export default {
         })
       this.editVisible = false
     },
-    // 确定删除
+    // Xác nhận xóa
     deleteRow () {
       HttpManager.deleteSong(this.idx)
         .then(response => {
           if (response) {
             this.getData()
-            this.notify('删除成功', 'success')
+            this.notify('Đã xóa thành công', 'success')
           } else {
-            this.notify('删除失败', 'error')
+            this.notify('Xóa thất bại', 'error')
           }
         })
         .catch(err => {
@@ -373,19 +373,19 @@ export default {
         })
       this.delVisible = false
     },
-    // 解析歌词
+    // Phân tích cú pháp lời bài hát
     parseLyric (text) {
       let lines = text.split('\n')
       let pattern = /\[\d{2}:\d{2}.(\d{3}|\d{2})\]/g
       let result = []
 
-      // 对于歌词格式不对的特殊处理
+      // Xử lý đặc biệt cho định dạng lời bài hát sai
       if (!(/\[.+\]/.test(text))) {
         return [text]
       }
       for (let item of lines) {
         if (pattern.test(item)) {
-          let value = item.replace(pattern, '') // 存歌词
+          let value = item.replace(pattern, '') // Lưu lời bài hát
           result.push(value)
         }
       }

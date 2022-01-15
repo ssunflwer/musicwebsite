@@ -43,7 +43,6 @@
   }
 }
 
-/*搜索*/
 .header-search {
   @include layout;
   border-radius: $header-search-radius;
@@ -72,7 +71,6 @@
   }
 }
 
-/*用户*/
 .header-right {
   position: relative;
   @include layout(center, center);
@@ -82,6 +80,7 @@
     height: $header-user-height;
     border-radius: $header-user-radius;
     margin: $header-user-margin;
+    background-color: gray;
     cursor: pointer;
     img {
       width: 100%;
@@ -118,19 +117,15 @@
 
   :nth-child(1):before {
     content: " ";
-    display: block; /*独占一行*/
+    display: block;
     position: absolute;
     right: 45px;
-    top: -5px; /*果断的露出上半部分*/
+    top: -5px;
     width: 10px;
     height: 10px;
     background-color: $color-white;
-    /*一个正方形倾斜四十五度就是三角了但是要把下半部分藏起来*/
     transform: rotate(45deg);
   }
-  // :nth-child(1):hover:before {
-  // background-color: $theme-color;
-  // }
 }
 
 .show {
@@ -141,3 +136,29 @@
   color: $theme-color !important;
   border-bottom: 5px solid $theme-color !important;
 }
+
+// Search giọng nói BBình
+
+.microphone {
+  cursor: pointer;
+}
+
+.microphone .recording-icon {
+  display: none;
+  width: 10px;
+  height: 10px;
+  background-color: #e22d2d;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite linear;
+}
+
+.microphone.recording .recording-icon {
+  display: inline-block;
+}
+
+.microphone.recording .fa-microphone {
+  display: none;
+}
+
+
+// End Search giọng nói BBình

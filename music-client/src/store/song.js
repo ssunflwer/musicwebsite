@@ -3,21 +3,21 @@ import { ICON } from '../assets/icon/index'
 
 const song = {
   state: {
-    isPlay: false, // 播放状态
-    playButtonUrl: ICON.BOFANG, // 播放状态的图标
-    id: null, // 音乐ID
-    url: '', // 歌曲URL
-    duration: 0, //  音乐时长
-    curTime: 0, // 当前音乐的播放位置
-    changeTime: 0, //  指定播放时刻
-    title: '', //  歌名
-    artist: '', //  歌手名
-    picUrl: '', // 歌曲图片
-    autoNext: true, // 用于触发自动播放下一首
-    lyric: [], // 未处理的歌词数据
-    listOfSongs: [], // 当前歌单列表
-    tempList: {}, // 单个歌单信息
-    listIndex: null, // 当前歌曲在歌曲列表的位置
+    isPlay: false, // Play
+    playButtonUrl: ICON.BOFANG, // Biểu tượng trạng thái đang phát
+    id: null, // ID Bài hát
+    url: '', // URL Bài hát
+    duration: 0, // Thời lượng âm nhạc
+    curTime: 0, // Vị trí phát nhạc hiện tại
+    changeTime: 0, // Chỉ định thời gian phát lại
+    title: '', //  Tiêu đề
+    artist: '', //  Ca sỹ
+    picUrl: '', // URL ảnh
+    autoNext: true, // Được sử dụng để kích hoạt tự động phát bản nhạc tiếp theo
+    lyric: [], // Lời bài hát
+    listOfSongs: [], // Danh sách bài hát
+    tempList: {}, // Thông tin danh sách phát
+    listIndex: null, // Vị trí của bài hát hiện tại trong danh sách bài hát
     volume: 50
   },
   getters: {

@@ -1,6 +1,6 @@
 const ICON = {
-  BOFANG: '#icon-bofanganniu', // 播放
-  ZANTING: '#icon-zanting' // 暂停
+  BOFANG: '#icon-bofanganniu',
+  ZANTING: '#icon-zanting'
 }
 
 export {

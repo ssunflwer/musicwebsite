@@ -6,7 +6,7 @@
           <div class="grid-content grid-con-1">
             <div class="grid-cont-right">
               <div class="grid-num">{{userCount}}</div>
-              <div>用户总数</div>
+              <div>Tổng số người dùng</div>
             </div>
           </div>
         </el-card>
@@ -16,7 +16,7 @@
           <div class="grid-content grid-con-2">
             <div class="grid-cont-right">
               <div class="grid-num">{{songCount}}</div>
-              <div>歌曲总数</div>
+              <div>Tổng số bài hát</div>
             </div>
           </div>
         </el-card>
@@ -26,7 +26,7 @@
           <div class="grid-content grid-con-3">
             <div class="grid-cont-right">
               <div class="grid-num">{{singerCount}}</div>
-              <div>歌手数量</div>
+              <div>Số lượng ca sĩ</div>
             </div>
           </div>
         </el-card>
@@ -36,7 +36,7 @@
           <div class="grid-content grid-con-4">
             <div class="grid-cont-right">
               <div class="grid-num">{{songListCount}}</div>
-              <div>歌单数量</div>
+              <div>Số lượng bài hát</div>
             </div>
           </div>
         </el-card>
@@ -44,13 +44,13 @@
     </el-row>
     <el-row :gutter="20">
       <el-col :span="12">
-        <h3 style="margin-bottom: 20px">用户性别比例</h3>
+        <h3 style="margin-bottom: 20px">Tỷ lệ giới tính người dùng</h3>
         <div class="cav-info" style="background-color: white">
           <ve-pie :data="userSex" :theme="options"></ve-pie>
         </div>
       </el-col>
       <el-col :span="12">
-        <h3 style="margin-bottom: 20px">歌曲类型分布</h3>
+        <h3 style="margin-bottom: 20px">Phân loại bài hát</h3>
         <div class="cav-info" style="background-color: white">
           <ve-histogram :data="songStyle" :theme="options3"></ve-histogram>
         </div>
@@ -58,13 +58,13 @@
     </el-row>
     <el-row :gutter="20">
       <el-col :span="12">
-        <h3 style="margin: 20px 0">歌手性别比例</h3>
+        <h3 style="margin: 20px 0">Tỷ lệ giới tính của nghệ sĩ</h3>
         <div class="cav-info" style="background-color: white">
           <ve-pie :data="singerSex" :theme="options1"></ve-pie>
         </div>
       </el-col>
       <el-col :span="12">
-        <h3 style="margin: 20px 0">歌手国籍分布</h3>
+        <h3 style="margin: 20px 0">Quốc tịch ca sĩ</h3>
         <div class="cav-info" style="background-color: white">
           <ve-histogram :data="country" :theme="options2"></ve-histogram>
         </div>
@@ -83,30 +83,30 @@ export default {
     return {
       user: [],
       userSex: {
-        columns: ['性别', '总数'],
+        columns: ['Giới tính', 'Tổng'],
         rows: [
-          { '性别': '男', '总数': 0 },
-          { '性别': '女', '总数': 0 }
+          { 'Giới tính': 'Nam', 'Tổng': 0 },
+          { 'Giới tính': 'Nữ', 'Tổng': 0 }
         ]
       },
       singerSex: {
-        columns: ['性别', '总数'],
+        columns: ['Giới tính', 'Tổng'],
         rows: [
-          { '性别': '男', '总数': 0 },
-          { '性别': '女', '总数': 0 }
+          { 'Giới tính': 'Nam', 'Tổng': 0 },
+          { 'Giới tính': 'Nữ', 'Tổng': 0 }
         ]
       },
       country: {
-        columns: ['国家', '总数'],
+        columns: ['Quốc gia', 'Tổng số'],
         rows: [
-          { '国家': '中国', '总数': 0 },
-          { '国家': '韩国', '总数': 0 },
-          { '国家': '意大利', '总数': 0 },
-          { '国家': '新加坡', '总数': 0 },
-          { '国家': '美国', '总数': 0 },
-          { '国家': '马来西亚', '总数': 0 },
-          { '国家': '西班牙', '总数': 0 },
-          { '国家': '日本', '总数': 0 }
+          { 'Quốc gia': 'Việt', 'Tổng số': 0 },
+          { 'Quốc gia': 'Hàn', 'Tổng số': 0 },
+          { 'Quốc gia': 'Ý', 'Tổng số': 0 },
+          { 'Quốc gia': 'Sing', 'Tổng số': 0 },
+          { 'Quốc gia': 'Hoa Kỳ', 'Tổng số': 0 },
+          { 'Quốc gia': 'Malaysia', 'Tổng số': 0 },
+          { 'Quốc gia': 'TBN', 'Tổng số': 0 },
+          { 'Quốc gia': 'Japan', 'Tổng số': 0 }
         ]
       },
       options: {
@@ -119,8 +119,8 @@ export default {
         color: ['#FEED78'],
         tooltip: {
           trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          axisPointer: { // Chỉ báo trục tọa độ, trình kích hoạt trục tọa độ hợp lệ
+            type: 'shadow' // Mặc định là một đường thẳng, tùy chọn：'line' | 'shadow'
           }
         },
         grid: {
@@ -134,8 +134,8 @@ export default {
         color: ['#FD8A61'],
         tooltip: {
           trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          axisPointer: { // Chỉ báo trục tọa độ, trình kích hoạt trục tọa độ hợp lệ
+            type: 'shadow' // Mặc định là một đường thẳng, có thể được chọn là：'line' | 'shadow'
           }
         },
         grid: {
@@ -146,15 +146,15 @@ export default {
         }
       },
       songStyle: {
-        columns: ['分格', '总数'],
+        columns: ['Thể loại', 'Tổng số'],
         rows: [
-          { '分格': '华语', '总数': 0 },
-          { '分格': '粤语', '总数': 0 },
-          { '分格': '欧美', '总数': 0 },
-          { '分格': '日韩', '总数': 0 },
-          { '分格': 'BGM', '总数': 0 },
-          { '分格': '轻音乐', '总数': 0 },
-          { '分格': '乐器', '总数': 0 }
+          { 'Thể loại': 'Radio', 'Tổng số': 0 },
+          { 'Thể loại': 'Nhạc nhẹ', 'Tổng số': 0 },
+          { 'Thể loại': 'Lofi', 'Tổng số': 0 },
+          { 'Thể loại': 'Remix', 'Tổng số': 0 },
+          { 'Thể loại': 'BGM', 'Tổng số': 0 },
+          { 'Thể loại': 'OST', 'Tổng số': 0 },
+          { 'Thể loại': 'Ballad', 'Tổng số': 0 }
         ]
       },
       userCount: 0,
@@ -173,8 +173,8 @@ export default {
     getUser () {
       HttpManager.getAllUser().then(res => {
         this.userCount = res.length
-        this.userSex.rows[0]['总数'] = this.setSex(1, res)
-        this.userSex.rows[1]['总数'] = this.setSex(0, res)
+        this.userSex.rows[0]['Tổng'] = this.setSex(1, res)
+        this.userSex.rows[1]['Tổng'] = this.setSex(0, res)
       })
     },
     setSex (sex, arr) {
@@ -188,24 +188,24 @@ export default {
     },
     getCountry (val) {
       for (let item of this.country.rows) {
-        if (val.includes(item['国家'])) {
-          item['总数']++
+        if (val.includes(item['Quốc gia'])) {
+          item['Tổng số']++
           break
         }
       }
     },
     getStyle (val) {
       for (let item of this.songStyle.rows) {
-        if (val.includes(item['分格'])) {
-          item['总数']++
+        if (val.includes(item['Thể loại'])) {
+          item['Tổng số']++
         }
       }
     },
     getSinger () {
       HttpManager.getAllSinger().then(res => {
         this.singerCount = res.length
-        this.singerSex.rows[0]['总数'] = this.setSex(1, res)
-        this.singerSex.rows[1]['总数'] = this.setSex(0, res)
+        this.singerSex.rows[0]['Tổng'] = this.setSex(1, res)
+        this.singerSex.rows[1]['Tổng'] = this.setSex(0, res)
         for (let item of res) {
           this.getCountry(item.location)
         }

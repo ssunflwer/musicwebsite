@@ -3,11 +3,11 @@ import { BASE_URL } from '../api/config'
 const configure = {
   state: {
     HOST: BASE_URL,
-    loginIn: false, // 用户是否登录
-    searchword: '', // 搜索关键词
-    showAside: false, // 是否显示侧边栏
-    activeName: '', // 歌单类型名
-    index: 0, // 列表中的序号
+    loginIn: false, // Người dùng đã đăng nhập
+    searchword: '', // Tìm từ khóa
+    showAside: false, // Hiển thị thanh bên
+    activeName: '', // Tên loại danh sách phát
+    index: 0, // Số thứ tự trong danh sách
     isActive: false
   },
   getters: {

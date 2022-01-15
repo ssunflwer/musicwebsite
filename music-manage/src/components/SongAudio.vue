@@ -18,19 +18,19 @@ export default {
   name: 'song-audio',
   computed: {
     ...mapGetters([
-      'id', // 音乐id
-      'url', // 音乐链接
-      'isPlay' // 播放状态
+      'id', // Id nhạc
+      'url', // Liên kết âm nhạc
+      'isPlay' // Trạng thái
     ])
   },
   watch: {
-    // 监听播放还是暂停
+    // Theo dõi phát hoặc tạm dừng
     isPlay: function () {
       this.togglePlay()
     }
   },
   methods: {
-    // 开始/暂停
+    // Bắt đầu tạm dừng
     togglePlay () {
       let player = document.querySelector('#player')
       if (this.isPlay) {
@@ -39,13 +39,13 @@ export default {
         player.pause()
       }
     },
-    // 获取歌曲链接后准备播放
+    // Lấy liên kết bài hát và chuẩn bị play
     startPlay () {
       let player = document.querySelector('#player')
-      //  开始播放
+      //  play
       player.play()
     },
-    // 音乐播放结束时触发
+    // Được kích hoạt khi kết thúc phát lại nhạc
     ended () {
       this.isPlay = false
     }
